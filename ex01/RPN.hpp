@@ -6,7 +6,7 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 00:28:35 by yooshima          #+#    #+#             */
-/*   Updated: 2025/03/24 13:06:59 by yooshima         ###   ########.fr       */
+/*   Updated: 2025/03/24 16:09:03 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class RPN {
     public:
-        static int executeRPN(char *inputStr);
+        static int executeRPN(const char *inputStr);
 
     private:
         RPN();
