@@ -6,11 +6,13 @@
 /*   By: yooshima <yooshima@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 14:10:27 by yooshima          #+#    #+#             */
-/*   Updated: 2025/02/16 22:28:57 by yooshima         ###   ########.fr       */
+/*   Updated: 2025/03/24 00:58:09 by yooshima         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+std::map<std::string, double> BitcoinExchange::_map;
 
 static std::string strtrim(std::string& str) {
   std::size_t first = str.find_first_not_of(' ');
@@ -18,17 +20,6 @@ static std::string strtrim(std::string& str) {
   std::size_t end = str.find_last_not_of(' ');
   return str.substr(first, end - first + 1);
 }
-
-BitcoinExchange::BitcoinExchange() {}
-
-BitcoinExchange::~BitcoinExchange() {}
-
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& src) { (void)src; };
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& src) {
-  (void)src;
-  return *this;
-};
 
 bool BitcoinExchange::executeBtc(const std::string& txtPath) {
   if (loadCsvAndInsert()) {
@@ -60,7 +51,7 @@ bool BitcoinExchange::loadCsvAndInsert() {
 }
 
 std::pair<std::string, double> BitcoinExchange::validateCsvLine(
-    const std::string& line) const {
+    const std::string& line) {
   if (line.length() < 12 || line[4] != '-' || line[7] != '-' ||
       !line.find(',') || line[10] != ',' ||
       (line.find(',') != line.rfind(','))) {
@@ -106,7 +97,7 @@ bool BitcoinExchange::loadTxtAndPrint(const std::string& txtPath) {
 }
 
 bool BitcoinExchange::validateTxtLine(const std::string& dateStr,
-                                      double value) const {
+                                      double value) {
   int year, month, day;
   char delimiter;
   std::stringstream ss(dateStr);
